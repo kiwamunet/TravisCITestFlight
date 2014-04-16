@@ -1,0 +1,11 @@
+language: objective-c
+env:
+  global:
+    - secure: hogehoge
+    - secure: fugafuga
+script:
+- make test
+after_success:
+- '[ "$TRAVIS_BRANCH" == "master" -o "$TRAVIS_BRANCH" == "develop" ] && make testflight'
+after_script:
+- '[ "$TRAVIS_BRANCH" == "master" -o "$TRAVIS_BRANCH" == "develop" ] && make remove-certificates'
